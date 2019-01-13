@@ -1,0 +1,38 @@
+
+header{
+    padding: 30px 30px 10px 30px ;
+}
+
+#staging{
+    padding: 20px 0px 20px 0px;
+}
+
+#staging h4{
+    border-bottom: 1px black solid;
+}
+
+#battle{
+    padding: 20px 0px 20px 0px;
+    height: 400px
+}
+
+#battle h4{
+    border-bottom: 1px black solid;
+}
+
+#battle .row{
+    height: 100%;
+}
+
+#attacker{
+    border-right: 1px red solid;
+}
+
+#defender{
+    border-left: 1px red solid;
+}
+
+img{
+    width: 100%;
+    height: auto;
+}
