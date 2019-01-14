@@ -56,7 +56,7 @@ img{
 img:hover{
     width: 100%;
     height: auto;
-    transition: all 0.8s
+    transition: all 0.8s;
 }
 
 /*-------------Battle--------------*/
