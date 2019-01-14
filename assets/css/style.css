@@ -32,8 +32,8 @@ header{
 }
 
 #staging .col-3{
-    padding-right: 2px;
-    padding-left: 2px;
+    padding-right: 1px;
+    padding-left: 1px;
 }
 
 
@@ -69,11 +69,11 @@ img:hover{
 }
 
 #attacker{
-    border-right: 1px blue solid;
+    border-right: 1px white solid;
 }
 
 #defender{
-    border-left: 1px red solid;
+    border-left: 1px white solid;
 }
 
 #defender figure{

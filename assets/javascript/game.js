@@ -60,6 +60,7 @@ $('img').on('click', function () {
     if (counter == 0) {
         imgPosition1 = $(this).attr('value');
         $('#instructions').text('Select the first Defender');
+        $('figure').eq(imgPosition1).fadeOut();
         counter++;
         
     } else if (counter == 1){
@@ -74,6 +75,7 @@ $('img').on('click', function () {
         var allFigure = $('figure');
         var userChar = $('figure').eq(imgPosition1);
         var firstDefender = $('figure').eq(imgPosition2);
+        $('figure').eq(imgPosition1).fadeIn();
 
         attack.append(userChar);
         defender.append(firstDefender);
