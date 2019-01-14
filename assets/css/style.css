@@ -3,6 +3,7 @@ header{
     padding: 30px 30px 10px 30px ;
 }
 
+/*-------------Staging--------------*/
 #staging{
     padding: 20px 0px 20px 0px;
 }
@@ -33,6 +34,15 @@ header{
 }
 
 img{
+    width: 90%;
+    height: auto;
+    transition: all 0.8s
+}
+
+img:hover{
     width: 100%;
     height: auto;
+    transition: all 0.8s
 }
+
+/*-------------Battle--------------*/
