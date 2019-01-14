@@ -3,9 +3,23 @@ header{
     padding: 30px 30px 10px 30px ;
 }
 
+.hide{
+    visibility: hidden;
+    transition: all 0.5s;
+}
+
+.show{
+    visibility: visible;
+}
+
 /*-------------Staging--------------*/
 #staging{
     padding: 20px 0px 20px 0px;
+}
+
+#staging .col-3{
+    padding-right: 2px;
+    padding-left: 2px;
 }
 
 #staging h4{

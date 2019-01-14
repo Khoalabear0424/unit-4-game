@@ -45,9 +45,20 @@ $fig.append($cap);
 $('.stage').eq(i).html($fig);
 };
 
+//---------Hide Battle Stage onLoad()----------//
+$('document').ready(function() {
+    window.onload = function(){
+        $('#battle').hide();
+    }
+});
 
 //------------Onclick To Staged Images------------//
-$('.stage').on('click',function(){
-    alert($(this).text());
-})
+$('figure').on('click',function(){
+    var imgText = $(this).text();
+
+    $('#staging').fadeOut('slow',function(){
+    //    alert(imgText); 
+    $('#battle').fadeIn(1000);
+    });
+});
 
