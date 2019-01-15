@@ -41,8 +41,8 @@ for (var i = 0; i < characters.length; i++) {
     $im.attr('value', i);
     $im.addClass('figure-img img-fluid rounded');
     $cap.text(characters[i].name);
+    
     $fig.addClass('figure-caption text-center');
-
     $fig.append($im);
     $fig.append($cap);
     $('.stage').eq(i).html($fig);
