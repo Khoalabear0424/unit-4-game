@@ -33,9 +33,20 @@
     <!-------------Battle Stage---------->
     <section id="battle" style="color:white" class="container text-center">
         <h4>Battle!</h4>
-        <div class="row text-center">
-            <div class="col-6" id="attacker"></div>
-            <div class="col-6 text-center" id="defender"></div>
+        <div class="row" style="height:30px">
+            <div class="col-6" id="stats">Health: <span id="health">100</span> &nbsp&nbspPower: <span id="health">100</span></div>
+            <div class="col-6" id="stats">Health: <span id="health">100</span> &nbsp&nbspPower: <span id="health">100</span></div>
+        </div>
+        <div class="row text-center" style="height:100%">
+            <div class="col-6" id="attacker">
+                <button type="button" class="btn btn-danger">Attack!</button>
+            </div>
+            <div class="col-6 text-center" id="defender">
+                <div class="row">
+                    <div class="col-6 queue"></div>
+                    <div class="col-6 queue"></div>
+                </div>
+            </div>
         </div>
     </section>
 

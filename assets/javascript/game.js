@@ -39,7 +39,7 @@ for (var i = 0; i < characters.length; i++) {
 
     $im.attr('src', characters[i].src);
     $im.attr('value', i);
-    $im.addClass('figure-img img-fluid rounded');
+    $im.addClass('figure-img img-fluid rounded img_wrap img_description');
     $cap.text(characters[i].name);
     
     $fig.addClass('figure-caption text-center');
@@ -66,27 +66,34 @@ $('img').on('click', function () {
     } else if (counter == 1){
         $('#staging').fadeOut('slow', function () {
             $('#battle').fadeIn(1000);
+            $('#battle').css("padding-top","0px");
         });
 
         //--------------Populate Battle Field----------//
         imgPosition2 = $(this).attr('value');
         var attack = $('#attacker');
         var defender = $('#defender');
+        var queue = $('.queue');
         var allFigure = $('figure');
         var userChar = $('figure').eq(imgPosition1);
         var firstDefender = $('figure').eq(imgPosition2);
-        $('figure').eq(imgPosition1).fadeIn();
+        var queuePos = 0;
 
-        attack.append(userChar);
-        defender.append(firstDefender);
+        $('figure').eq(imgPosition1).fadeIn();
+        attack.prepend(userChar);
+        defender.prepend(firstDefender);
         
         for (var i = 0; i < allFigure.length; i++) {
             if (i != imgPosition1 && i!= imgPosition2) {
-                defender.append(allFigure.eq(i));
+                queue.eq(queuePos).append(allFigure.eq(i));
+                queuePos++;
             };
         };
         counter++
     }
+});
 
+$('button').on('click',function(){
+    alert("hi");
 });
 

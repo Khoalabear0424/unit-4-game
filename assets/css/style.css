@@ -3,7 +3,7 @@ body::after {
     position: fixed;
     z-index: -1;   
     width: 100%;
-    background-image: url('/assets/images/backgroundvert.png');
+    background-image: url('/assets/images/background.png');
     background-size: cover;
     opacity: 0.9;
     top: 0;
@@ -64,7 +64,6 @@ img:hover{
 }
 
 figcaption{
-    /* color: yellow; */
     font-size: 20px;
     color: yellow;
     text-shadow:
@@ -73,7 +72,6 @@ figcaption{
     -1px 1px 0 #000,
     1px 1px 0 #000; 
 }
-
 
 /*-------------Battle--------------*/
 
@@ -103,5 +101,13 @@ figcaption{
 }
 
 #defender figure{
-    width: 90%;
+    width: 100%;
+}
+
+#stats{
+    color: white;
+    padding: 2px;
+    background-color: black;
+    border-radius: 15px;
+    opacity: 0.6;
 }
