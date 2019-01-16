@@ -2,30 +2,30 @@ var characters = [
     {
         name: "Rey",
         src: "./assets/images/rey.png",
-        health: 10,
-        attack: 10,
-        counter: 10
+        health: 300,
+        power: 15,
+        counter: 30
     },
     {
         name: "Han Solo",
         src: "./assets/images/han.png",
-        health: 10,
-        attack: 10,
-        counter: 10
+        health: 400,
+        power: 20,
+        counter: 25
     },
     {
         name: "Darth Vader",
         src: "./assets/images/vader.png",
-        health: 10,
-        attack: 10,
-        counter: 10
+        health: 450,
+        power: 25,
+        counter: 20
     },
     {
         name: "Kylo Ren",
         src: "./assets/images/kylo.png",
-        health: 10,
-        attack: 10,
-        counter: 10
+        health: 300,
+        power: 30,
+        counter: 30
     }
 ];
 
@@ -82,6 +82,12 @@ $('img').on('click', function () {
         $('figure').eq(imgPosition1).fadeIn();
         attack.prepend(userChar);
         defender.prepend(firstDefender);
+        $('#health1').text(characters[imgPosition1].health);
+        $('#health2').text(characters[imgPosition2].health);
+        $('#power1').text(characters[imgPosition1].power);
+        $('#power2').text(characters[imgPosition2].power);
+        $('#counter1').text(characters[imgPosition1].counter);
+        $('#counter2').text(characters[imgPosition2].counter);
         
         for (var i = 0; i < allFigure.length; i++) {
             if (i != imgPosition1 && i!= imgPosition2) {

@@ -58,9 +58,9 @@ img{
 img:hover{
     width: 100%;
     height: auto;
-    transition: all 0.8s;
+    transition: ease-out 0.6s;
     padding: 2px;
-    background-color: yellow;
+    background-color: #ffff00a0;
 }
 
 figcaption{
@@ -109,5 +109,18 @@ figcaption{
     padding: 2px;
     background-color: black;
     border-radius: 15px;
-    opacity: 0.6;
+    opacity: 0.7;
+    margin: 5px 0px;
+}
+
+.health{
+    color: green;
+}
+
+.power{
+    color: red;
+}
+
+.counter{
+    color: rgb(88, 88, 238);
 }
