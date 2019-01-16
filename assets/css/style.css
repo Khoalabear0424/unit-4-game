@@ -92,14 +92,6 @@ figcaption{
     height: 100%;
 }
 
-#attacker{
-    border-right: 1px white solid;
-}
-
-#defender{
-    border-left: 1px white solid;
-}
-
 #defender figure{
     width: 100%;
 }

@@ -69,6 +69,11 @@ $('img').on('click', function () {
             $('#battle').css("padding-top","0px");
         });
 
+        $("header").animate({
+            "padding-top": "20px",
+            "padding-bottom": "0px"
+        },1000);
+
         //--------------Populate Battle Field----------//
         imgPosition2 = $(this).attr('value');
         var attack = $('#attacker');
@@ -78,6 +83,7 @@ $('img').on('click', function () {
         var userChar = $('figure').eq(imgPosition1);
         var firstDefender = $('figure').eq(imgPosition2);
         var queuePos = 0;
+        buttonClick = true;
 
         $('figure').eq(imgPosition1).fadeIn();
         attack.prepend(userChar);
@@ -96,10 +102,36 @@ $('img').on('click', function () {
             };
         };
         counter++
+
     }
 });
 
+//-------------Battle Logic---------------//
+
 $('button').on('click',function(){
-    alert("hi");
+    if(buttonClick == true){
+
+    var userHealth = parseInt($('#health1').text());
+    var userPower = parseInt($('#power1').text());
+    var defenderHealth =  parseInt($('#health2').text());
+    var defenderPower=  parseInt($('#power2').text());
+
+    userHealth -= defenderPower;
+    defenderHealth -= userPower;
+    
+    userPower += userPower;
+
+    $('#health1').text(userHealth);
+    $('#health2').text(defenderHealth);
+    $('#power1').text(userPower);
+
+    if(defenderHealth <= 0){
+        alert("NICE");
+        buttonClick = false;
+    } else if (userHealth <= 0) {
+        alert("YOU SUCK");
+    };
+    console.log("attack!");
+}
 });
 
