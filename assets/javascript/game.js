@@ -104,34 +104,34 @@ $('img').on('click', function () {
         counter++
 
     }
+    mul =1;
+    userHealth = parseInt($('#health1').text());
+    userPower = parseInt($('#power1').text());
+    defenderHealth =  parseInt($('#health2').text());
+    defenderPower=  parseInt($('#power2').text());
 });
 
-//-------------Battle Logic---------------//
 
+//-------------Battle Logic---------------//
 $('button').on('click',function(){
     if(buttonClick == true){
-
-    var userHealth = parseInt($('#health1').text());
-    var userPower = parseInt($('#power1').text());
-    var defenderHealth =  parseInt($('#health2').text());
-    var defenderPower=  parseInt($('#power2').text());
-
     userHealth -= defenderPower;
-    defenderHealth -= userPower;
-    
-    userPower += userPower;
+    defenderHealth -= (userPower*mul);
+    console.log(userPower);
+    ;
 
     $('#health1').text(userHealth);
     $('#health2').text(defenderHealth);
-    $('#power1').text(userPower);
+    $('#power1').text(userPower*mul);
 
     if(defenderHealth <= 0){
-        alert("NICE");
         buttonClick = false;
+        counter = 1;
+        
     } else if (userHealth <= 0) {
-        alert("YOU SUCK");
     };
     console.log("attack!");
+    mul++;
 }
 });
 
