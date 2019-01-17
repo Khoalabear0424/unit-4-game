@@ -61,6 +61,8 @@ $('img').on('click', function () {
         imgPosition1 = $(this).attr('value');
         $('#instructions').text('Select the first Defender');
         $('figure').eq(imgPosition1).fadeOut();
+        $('#power1').text(characters[imgPosition1].power);
+        $('#health1').text(characters[imgPosition1].health);
         counter++;
         
     } else if (counter == 1){
@@ -86,11 +88,11 @@ $('img').on('click', function () {
         buttonClick = true;
 
         $('figure').eq(imgPosition1).fadeIn();
+        alert(imgPosition1);
+        alert(imgPosition2);
         attack.prepend(userChar);
         defender.prepend(firstDefender);
-        $('#health1').text(characters[imgPosition1].health);
         $('#health2').text(characters[imgPosition2].health);
-        $('#power1').text(characters[imgPosition1].power);
         $('#power2').text(characters[imgPosition2].power);
         $('#counter1').text(characters[imgPosition1].counter);
         $('#counter2').text(characters[imgPosition2].counter);
@@ -102,13 +104,14 @@ $('img').on('click', function () {
             };
         };
         counter++
-
     }
     mul =1;
     userHealth = parseInt($('#health1').text());
     userPower = parseInt($('#power1').text());
     defenderHealth =  parseInt($('#health2').text());
     defenderPower=  parseInt($('#power2').text());
+    alert(characters[imgPosition1].name);
+    alert(characters[imgPosition2].name);
 });
 
 
@@ -127,7 +130,8 @@ $('button').on('click',function(){
     if(defenderHealth <= 0){
         buttonClick = false;
         counter = 1;
-        
+        $('#defender > figure').fadeOut('slow');
+
     } else if (userHealth <= 0) {
     };
     console.log("attack!");
@@ -135,3 +139,7 @@ $('button').on('click',function(){
 }
 });
 
+// $("header").animate({
+//     "padding-top": "20px",
+//     "padding-bottom": "0px"
+// },1000);
