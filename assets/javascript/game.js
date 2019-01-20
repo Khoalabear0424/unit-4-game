@@ -2,7 +2,7 @@ var characters = [
     {
         name: "Rey",
         src: "./assets/images/rey.png",
-        health: 300,
+        health: 1,
         power: 15,
         counter: 30
     },
@@ -89,6 +89,8 @@ $('img').on('click', function () {
             "padding-bottom": "0px"
         },1000);
 
+        $('h4').remove();
+
         //--------------Populate Battle Field----------//
         imgPosition2 = $(this).attr('value');
         queue = $('.queue');
@@ -132,13 +134,25 @@ $('button').on('click',function(){
     $('#health1').text(userHealth);
     $('#health2').text(defenderHealth);
     $('#power1').text(userPower*attackMultiplier);
+    var $h4 = $('<h4></h4>');
+    $h4.text('Please Choose Another Character to Fight!')
 
     if(defenderHealth <= 0){
+        $('#health2').text(0);
         buttonClick = false;
         counter = 1;
-        $('#defender > figure').fadeOut('slow');
+        $('#defender > figure').html($h4);
 
     } else if (userHealth <= 0) {
+        $h4.text('You Lose!')
+        $('#attacker > figure').html($h4);
+        buttonClick = false;
+        $('button').text("Play Again");
+        $('button').removeClass('btn-danger');
+        $('button').addClass('btn-warning');
+        $('button').on('click',function(){
+            location.reload();
+        })
     };
     attackMultiplier++;
 }
