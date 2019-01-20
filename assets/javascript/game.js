@@ -2,7 +2,7 @@ var characters = [
     {
         name: "Rey",
         src: "./assets/images/rey.png",
-        health: 1,
+        health: 300,
         power: 15,
         counter: 30
     },
@@ -29,6 +29,7 @@ var characters = [
     }
 ];
 
+var winCount = 0;
 var counter = 0;
 var queuePos = 0;
 var attack = $('#attacker');
@@ -47,12 +48,12 @@ for (var i = 0; i < characters.length; i++) {
     var $fig = $('<figure></figure>')
     var $im = $('<img>');
     var $cap = $('<figcaption></figcaption>')
-    
+
     $im.attr('src', characters[i].src);
     $im.attr('value', i);
     $im.addClass('figure-img img-fluid rounded img_wrap img_description');
     $cap.text(characters[i].name);
-    
+
     $fig.addClass('figure-caption text-center');
     $fig.append($im);
     $fig.append($cap);
@@ -77,19 +78,19 @@ $('img').on('click', function () {
         $('#power1').text(characters[imgPosition1].power);
         $('#health1').text(characters[imgPosition1].health);
         counter++;
-        
-    } else if (counter == 1){
+
+    } else if (counter == 1) {
         $('#staging').hide('slow', function () {
             $('#battle').fadeIn(1000);
-            $('#battle').css("padding-top","0px");
+            $('#battle').css("padding-top", "0px");
         });
 
         $("header").animate({
             "padding-top": "20px",
             "padding-bottom": "0px"
-        },1000);
+        }, 1000);
 
-        $('h4').remove();
+        $('h4').hide();
 
         //--------------Populate Battle Field----------//
         imgPosition2 = $(this).attr('value');
@@ -106,9 +107,8 @@ $('img').on('click', function () {
         $('#power2').text(characters[imgPosition2].power);
         $('#counter1').text(characters[imgPosition1].counter);
         $('#counter2').text(characters[imgPosition2].counter);
-        
+
         for (var i = 0; i < allFigure.length; i++) {
-            console.log(allFigure.eq(i));
             if (i != imgPosition1 && i != imgPosition2) {
                 queue.eq(queuePos).append(allFigure.eq(i));
                 queuePos++;
@@ -119,46 +119,53 @@ $('img').on('click', function () {
     attackMultiplier = 1;
     userHealth = parseInt($('#health1').text());
     userPower = parseInt($('#power1').text());
-    defenderHealth =  parseInt($('#health2').text());
-    defenderPower=  parseInt($('#power2').text());
+    defenderHealth = parseInt($('#health2').text());
+    defenderPower = parseInt($('#power2').text());
 });
 
 
 //-------------Battle Logic---------------//
-$('button').on('click',function(){
-    if(buttonClick == true){
-    userHealth -= defenderPower;
-    defenderHealth -= (userPower*attackMultiplier);
-    ;
+$('button').on('click', function () {
+    if (buttonClick == true) {
+        userHealth -= defenderPower;
+        defenderHealth -= (userPower * attackMultiplier);
+        ;
 
-    $('#health1').text(userHealth);
-    $('#health2').text(defenderHealth);
-    $('#power1').text(userPower*attackMultiplier);
-    var $h4 = $('<h4></h4>');
-    $h4.text('Please Choose Another Character to Fight!')
+        $('#health1').text(userHealth);
+        $('#health2').text(defenderHealth);
+        $('#power1').text(userPower * attackMultiplier);
 
-    if(defenderHealth <= 0){
-        $('#health2').text(0);
-        buttonClick = false;
-        counter = 1;
-        $('#defender > figure').html($h4);
+        if (defenderHealth <= 0) {
+            $('#health2').text(0);
+            buttonClick = false;
+            counter = 1;
+            winCount++;
 
-    } else if (userHealth <= 0) {
-        $h4.text('You Lose!')
-        $('#attacker > figure').html($h4);
-        buttonClick = false;
-        $('button').text("Play Again");
-        $('button').removeClass('btn-danger');
-        $('button').addClass('btn-warning');
-        $('button').on('click',function(){
-            location.reload();
-        })
-    };
-    attackMultiplier++;
-}
+            if (winCount < 3) {
+                $('#defender > figure').fadeOut('slow', function () {
+                    $('h4').fadeIn('slow');
+                });
+            } else {
+                $('#defender > figure').fadeOut('slow', function () {
+                    alert("YOU WIN");
+                    $('h4').remove();
+                });
+            }
+
+
+        } else if (userHealth <= 0) {
+            $h4.text('You Lose!')
+            $('#attacker > figure').html($h4);
+            buttonClick = false;
+
+            $('button').text("Play Again");
+            $('button').removeClass('btn-danger');
+            $('button').addClass('btn-warning');
+            $('button').on('click', function () {
+                location.reload();
+            });
+        };
+
+        attackMultiplier++;
+    }
 });
-
-// $("header").animate({
-//     "padding-top": "20px",
-//     "padding-bottom": "0px"
-// },1000);
