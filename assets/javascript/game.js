@@ -2,30 +2,30 @@ var characters = [
     {
         name: "Rey",
         src: "./assets/images/rey.png",
-        health: 150,
+        health: 20,
         power: 10,
-        counter: 45
+        counter: 70
     },
     {
         name: "Han Solo",
         src: "./assets/images/han.png",
-        health: 280,
+        health: 250,
         power: 8,
-        counter: 40
+        counter: 60
     },
     {
         name: "Darth Vader",
         src: "./assets/images/vader.png",
         health: 275,
         power: 12,
-        counter: 35
+        counter: 50
     },
     {
         name: "Kylo Ren",
         src: "./assets/images/kylo.png",
-        health: 250,
+        health: 230,
         power: 12,
-        counter: 40
+        counter: 50
     }
 ];
 
@@ -168,7 +168,8 @@ $('button').on('click', function () {
 
 
         } else if (userHealth <= 0) {
-            $h4.text('You Lose!')
+            var $h4 = $('<h4></h4>')
+            $h4.text("You Lose!");
             $('#attacker > figure').html($h4);
             buttonClick = false;
 
