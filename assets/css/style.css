@@ -126,3 +126,7 @@ figcaption{
 .counter{
     color: rgb(88, 88, 238);
 }
+
+#victory{
+    max-width: 960px;
+}
