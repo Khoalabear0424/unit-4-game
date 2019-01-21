@@ -3,15 +3,15 @@ var characters = [
         name: "Ray",
         src: "./assets/images/rey.png",
         health: 200,
-        power: 10,
-        counter: 30
+        power: 12,
+        counter: 20
     },
     {
         name: "Han Solo",
         src: "./assets/images/han.png",
         health: 250,
         power: 8,
-        counter: 20
+        counter: 18
     },
     {
         name: "Darth Vader",
@@ -25,7 +25,7 @@ var characters = [
         src: "./assets/images/kylo.png",
         health: 230,
         power: 12,
-        counter: 35
+        counter: 17
     }
 ];
 
@@ -67,6 +67,8 @@ allFigure = $('figure');
 $('document').ready(function () {
     window.onload = function () {
         $('#battle').hide();
+        $('#victory').hide();
+        $('#playAgain').hide();
     }
 });
 
@@ -92,7 +94,6 @@ $('img').on('click', function () {
         }, 1000);
 
         $('h4').hide();
-        allFigure.eq(imgPosition1).unbind();
 
         //--------------Populate Battle Field----------//
         imgPosition2 = $(this).attr('value');
@@ -169,17 +170,19 @@ $('button').on('click', function () {
                 $('#defender > figure').fadeOut('slow', function () {
                     $('h4').fadeIn('slow');
                 });
-            } else {
-                $('#defender > figure').fadeOut('slow', function () {
-                    counter = 3;
-                    $('h4').remove();
-                    
-                    $('button').text("Play Again");
-                    $('button').removeClass('btn-danger');
-                    $('button').addClass('btn-warning');
-                    $('button').on('click', function () {
-                        location.reload();
-                    });
+            } else if(winCount === 3) {
+                $('#victory img').attr('src',characters[imgPosition1].src);
+
+                $('button').on('click', function () {
+                    location.reload();
+                });
+                $('#battle').fadeOut('slow',function(){
+                    $('#victory').fadeIn('slow');
+
+                    setTimeout(function(){
+                        $('#playAgain').fadeIn('slow');
+
+                    },1500);
                 });
             }
         };
@@ -187,3 +190,5 @@ $('button').on('click', function () {
         attackMultiplier++;
     }
 });
+
+//win: kylo -> vader/ray/han
