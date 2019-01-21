@@ -42,6 +42,7 @@ var allFigure = {};
 var userChar = {};
 var firstDefender = {};
 var attackMultiplier = 0;
+var queueFigure = [];
 
 //---------Load photos of characters to Staging----------//
 for (var i = 0; i < characters.length; i++) {
@@ -91,6 +92,7 @@ $('img').on('click', function () {
         }, 1000);
 
         $('h4').hide();
+        allFigure.eq(imgPosition1).unbind();
 
         //--------------Populate Battle Field----------//
         imgPosition2 = $(this).attr('value');
@@ -101,17 +103,20 @@ $('img').on('click', function () {
         buttonClick = true;
 
         allFigure.eq(imgPosition1).fadeIn();
+        allFigure.addClass('disabled');
         attack.prepend(userChar);
         defender.prepend(firstDefender);
         $('#health2').text(characters[imgPosition2].health);
         $('#power2').text(characters[imgPosition2].power);
         $('#counter1').text(characters[imgPosition1].counter);
         $('#counter2').text(characters[imgPosition2].counter);
+        queueFigure = [];
 
         for (var i = 0; i < allFigure.length; i++) {
             if (i != imgPosition1 && i != imgPosition2) {
                 queue.eq(queuePos).append(allFigure.eq(i));
                 queuePos++;
+                queue.push(i);
             };
         };
         counter++
@@ -141,6 +146,10 @@ $('button').on('click', function () {
             counter = 1;
             winCount++;
 
+            for(var i =0; i<queue.length; i++){
+                allFigure.eq(queue[i]).removeClass('disabled');
+            }
+
             if (winCount < 3) {
                 $('#defender > figure').fadeOut('slow', function () {
                     $('h4').fadeIn('slow');
@@ -148,7 +157,9 @@ $('button').on('click', function () {
             } else {
                 $('#defender > figure').fadeOut('slow', function () {
                     alert("YOU WIN");
+                    counter = 3;
                     $('h4').remove();
+
                 });
             }
 

@@ -73,6 +73,10 @@ img:hover{
     background-color: #ffff00a0;
 }
 
+.disabled {
+    pointer-events: none;  /**<-----------*/
+}
+
 figcaption{
     font-size: 20px;
     color: yellow;
@@ -92,10 +96,6 @@ figcaption{
 #battle{
     padding: 20px 0px 20px 0px;
     height: 400px
-}
-
-#battle h4{
-    border-bottom: 1px black solid;
 }
 
 #battle .row{
