@@ -2,30 +2,30 @@ var characters = [
     {
         name: "Rey",
         src: "./assets/images/rey.png",
-        health: 300,
-        power: 15,
-        counter: 30
+        health: 150,
+        power: 10,
+        counter: 45
     },
     {
         name: "Han Solo",
         src: "./assets/images/han.png",
-        health: 400,
-        power: 20,
-        counter: 25
+        health: 280,
+        power: 8,
+        counter: 40
     },
     {
         name: "Darth Vader",
         src: "./assets/images/vader.png",
-        health: 450,
-        power: 25,
-        counter: 20
+        health: 275,
+        power: 12,
+        counter: 35
     },
     {
         name: "Kylo Ren",
         src: "./assets/images/kylo.png",
-        health: 300,
-        power: 30,
-        counter: 30
+        health: 250,
+        power: 12,
+        counter: 40
     }
 ];
 
@@ -41,7 +41,7 @@ var queue = {};
 var allFigure = {};
 var userChar = {};
 var firstDefender = {};
-var attackMultiplier = 0;
+var attackMultiplier = 1;
 var queueFigure = [];
 
 //---------Load photos of characters to Staging----------//
@@ -121,9 +121,7 @@ $('img').on('click', function () {
         };
         counter++
     }
-    attackMultiplier = 1;
     userHealth = parseInt($('#health1').text());
-    userPower = parseInt($('#power1').text());
     defenderHealth = parseInt($('#health2').text());
     defenderPower = parseInt($('#power2').text());
 });
@@ -132,9 +130,9 @@ $('img').on('click', function () {
 //-------------Battle Logic---------------//
 $('button').on('click', function () {
     if (buttonClick == true) {
+        var userPower = characters[imgPosition1].power;
         userHealth -= defenderPower;
         defenderHealth -= (userPower * attackMultiplier);
-        ;
 
         $('#health1').text(userHealth);
         $('#health2').text(defenderHealth);
@@ -156,10 +154,15 @@ $('button').on('click', function () {
                 });
             } else {
                 $('#defender > figure').fadeOut('slow', function () {
-                    alert("YOU WIN");
                     counter = 3;
                     $('h4').remove();
-
+                    
+                    $('button').text("Play Again");
+                    $('button').removeClass('btn-danger');
+                    $('button').addClass('btn-warning');
+                    $('button').on('click', function () {
+                        location.reload();
+                    });
                 });
             }
 
