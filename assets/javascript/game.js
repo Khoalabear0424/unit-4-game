@@ -1,31 +1,31 @@
 var characters = [
     {
-        name: "Rey",
+        name: "Ray",
         src: "./assets/images/rey.png",
-        health: 20,
+        health: 200,
         power: 10,
-        counter: 70
+        counter: 30
     },
     {
         name: "Han Solo",
         src: "./assets/images/han.png",
         health: 250,
         power: 8,
-        counter: 60
+        counter: 20
     },
     {
         name: "Darth Vader",
         src: "./assets/images/vader.png",
         health: 275,
-        power: 12,
-        counter: 50
+        power: 10,
+        counter: 15
     },
     {
         name: "Kylo Ren",
         src: "./assets/images/kylo.png",
         health: 230,
         power: 12,
-        counter: 50
+        counter: 35
     }
 ];
 
@@ -123,7 +123,7 @@ $('img').on('click', function () {
     }
     userHealth = parseInt($('#health1').text());
     defenderHealth = parseInt($('#health2').text());
-    defenderPower = parseInt($('#power2').text());
+    defenderCounter = characters[imgPosition2].counter;
 });
 
 
@@ -131,14 +131,31 @@ $('img').on('click', function () {
 $('button').on('click', function () {
     if (buttonClick == true) {
         var userPower = characters[imgPosition1].power;
-        userHealth -= defenderPower;
+        userHealth -= defenderCounter;
         defenderHealth -= (userPower * attackMultiplier);
 
         $('#health1').text(userHealth);
         $('#health2').text(defenderHealth);
         $('#power1').text(userPower * attackMultiplier);
 
-        if (defenderHealth <= 0) {
+
+
+        if (userHealth <= 0) {
+            console.log("lose!");
+            var $h4 = $('<h4></h4>')
+            $h4.text("You Lose!");
+            $('#attacker > figure').html($h4);
+            buttonClick = false;
+
+            $('button').text("Play Again");
+            $('button').removeClass('btn-danger');
+            $('button').addClass('btn-warning');
+            $('button').on('click', function () {
+                location.reload();
+            });
+
+
+        } else if (defenderHealth <= 0) {
             $('#health2').text(0);
             buttonClick = false;
             counter = 1;
@@ -165,20 +182,6 @@ $('button').on('click', function () {
                     });
                 });
             }
-
-
-        } else if (userHealth <= 0) {
-            var $h4 = $('<h4></h4>')
-            $h4.text("You Lose!");
-            $('#attacker > figure').html($h4);
-            buttonClick = false;
-
-            $('button').text("Play Again");
-            $('button').removeClass('btn-danger');
-            $('button').addClass('btn-warning');
-            $('button').on('click', function () {
-                location.reload();
-            });
         };
 
         attackMultiplier++;
